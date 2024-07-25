@@ -29,7 +29,7 @@ if (isProduction) {
 
 // Express server
 const app = express();
-const port = process.env.PORT || 80001;
+const port = process.env.PORT || 8001;
 
 // Webhook endpoint
 app.post(`/bot${token}`, (req, res) => {
