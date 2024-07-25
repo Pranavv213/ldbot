@@ -10,7 +10,40 @@ const date = require('date-and-time');
 
 const token = '7262080899:AAEkZL2gJXRGYQL_PCZfPbsTrDODCCmui8g';
 
-const bot = new TelegramBot(token, { polling: true });
+const express = require('express');
+
+// Token and chat ID
+
+
+// Environment check
+const isProduction = process.env.NODE_ENV === 'production';
+
+// Bot initialization
+let bot;
+if (isProduction) {
+  bot = new TelegramBot(token);
+  bot.setWebHook(`${process.env.HEROKU_URL}/bot${token}`);
+} else {
+  bot = new TelegramBot(token, { polling: true });
+}
+
+// Express server
+const app = express();
+const port = process.env.PORT || 80001;
+
+// Webhook endpoint
+app.post(`/bot${token}`, (req, res) => {
+  bot.processUpdate(req.body);
+  res.sendStatus(200);
+});
+
+app.get('/', (req, res) => {
+  res.send('Bot is running...');
+});
+
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
+});
 
 
 bot.onText(/\/start/,async (msg) =>{

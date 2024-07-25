@@ -11,6 +11,8 @@
   "dependencies": {
     "axios": "^1.7.2",
     "date-and-time": "^3.4.1",
+    "express": "^4.19.2",
+    "firebase-tools": "^13.14.1",
     "node-schedule": "^2.1.1",
     "node-telegram-bot-api": "^0.66.0"
   }
