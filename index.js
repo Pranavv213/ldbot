@@ -16,13 +16,13 @@ const express = require('express');
 
 
 // Environment check
-const isProduction = process.env.NODE_ENV === 'production';
+const isProduction = true;
 
 // Bot initialization
 let bot;
 if (isProduction) {
   bot = new TelegramBot(token);
-  bot.setWebHook(`${process.env.HEROKU_URL}/bot${token}`);
+  bot.setWebHook(`https://routerldbot.finelogics.com//bot${token}`);
 } else {
   bot = new TelegramBot(token, { polling: true });
 }
