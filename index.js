@@ -211,7 +211,7 @@ bot.onText(/\/start/,async (msg) =>{
 
   const chatId = msg.chat.id;
 
-  console.log(typeof(chatId))
+  console.log(chatId)
 
   await addDoc(userCollection,{chatId:chatId});
 
